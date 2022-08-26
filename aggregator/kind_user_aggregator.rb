@@ -21,9 +21,9 @@ class KindUserAggregator
   
   users = []
   reactions.map{ |reaction|
-    users << reaction.map{ |data| data["users"]}
+    users << reaction.map{ |x| x["users"]}
   }
-  
+
   users = users.flatten.group_by(&:itself)
 
   datas = []
