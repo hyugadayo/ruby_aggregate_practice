@@ -9,7 +9,14 @@ class HighMotivationUserAggregator
 
   # 実装してください
   def exec
-    
+    datas = []
+    @channel_names.map { |channel|
+      data = {}
+      data[:channel_name] = channel
+      data[:message_count] = load(channel)["messages"].count
+      datas << data
+    }
+    datas.sort_by{|x| -x[:message_count]}.first(3)
   end
 
   def load(channel_name)
